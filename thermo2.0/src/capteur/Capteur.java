@@ -14,12 +14,14 @@ public class Capteur {
     private int temperature;
     private int tMax;//température maximale
     private int tMin;//température minimale
+    private int frequence; //nombre de rafréchissement des données
     
-    public Capteur(String nomCapteur,int temperature, int tMax, int tMin) {
+    public Capteur(String nomCapteur,int temperature, int tMax, int tMin,int frequence) {
         this.nomCapteur=nomCapteur;
         this.tMax=tMax;
         this.tMin=tMin;
         this.temperature=temperature;
+        this.frequence=frequence;
     }
     
 }
