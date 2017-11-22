@@ -19,11 +19,17 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
+       
       <Label text="Digital" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
             <Font size="37.0" />
          </font></Label>
       <Button mnemonicParsing="false" onAction="#onExit" text="Quitter" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Label text="Capteur X" GridPane.valignment="TOP" />
+      
+      
+      <Label text="${controller.monCapteur.temperature}" />
+
    </children>
 </GridPane>
+

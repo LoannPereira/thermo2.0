@@ -5,23 +5,49 @@
  */
 package capteur;
 
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author argiraud
  */
 public class Capteur {
-    private String nomCapteur;
-    private int temperature;
-    private int tMax;//température maximale
-    private int tMin;//température minimale
-    private int frequence; //nombre de rafréchissement des données
     
-    public Capteur(String nomCapteur,int temperature, int tMax, int tMin,int frequence) {
-        this.nomCapteur=nomCapteur;
-        this.tMax=tMax;
-        this.tMin=tMin;
-        this.temperature=temperature;
-        this.frequence=frequence;
+    private final StringProperty nomCapteur = new SimpleStringProperty();
+        public String getNomCapteur() {return nomCapteur.get();}
+        public void setNomCapteur(String nom) {this.nomCapteur.set(nom);}
+        public StringProperty nomCapteurProperty(){return nomCapteur;}
+
+    private final IntegerProperty temperature = new SimpleIntegerProperty();
+        public int getTemperature() {return temperature.get();}
+        public void setTemperature(int temperature) {this.temperature.set(temperature);}
+        public IntegerProperty temperatureProperty(){return temperature;}
+       
+    private final IntegerProperty frequence = new SimpleIntegerProperty();
+        public int getFrequence() {return frequence.get();}
+        public void setFrequence(int frequence) {this.frequence.set(frequence);}
+        public IntegerProperty frequenceProperty(){return frequence;}
+    
+   
+   
+    
+    public Capteur(String nomCapteur,int temperature, int frequence) {
+        setNomCapteur(nomCapteur);
+        setTemperature(temperature);
+        setFrequence(frequence);
     }
+    
+    @Override
+    public String toString()
+    {
+        return String.format("%s", getNomCapteur() );
+    }
+    
     
 }
