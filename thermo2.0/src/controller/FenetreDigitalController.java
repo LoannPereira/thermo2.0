@@ -5,7 +5,7 @@
  */
 package controller;
 
-import capteur.Capteur;
+import metier.Capteur;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.property.ObjectProperty;

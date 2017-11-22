@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package capteur;
+package metier;
 
 
 import javafx.beans.property.IntegerProperty;
@@ -34,14 +34,18 @@ public class Capteur {
         public void setFrequence(int frequence) {this.frequence.set(frequence);}
         public IntegerProperty frequenceProperty(){return frequence;}
     
-   
+    private static final int TMAX=50;
+    
+    private static final int TMIN=-50;
    
     
     public Capteur(String nomCapteur,int temperature, int frequence) {
-        setNomCapteur(nomCapteur);
-        setTemperature(temperature);
-        setFrequence(frequence);
+        this.nomCapteur.set(nomCapteur);
+        this.temperature.set(temperature);
+        this.frequence.set(frequence);
     }
+    
+    
     
     @Override
     public String toString()
