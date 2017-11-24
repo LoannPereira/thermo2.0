@@ -7,13 +7,21 @@ package controller;
 
 import java.io.IOException;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.stage.Stage;
+import metier.Capteur;
+import modele.ModeleCapteur;
 
 /**
  *
@@ -25,6 +33,8 @@ public class MainpageController {
     MenuButton menubtn;
     @FXML
     Label ermsg;
+    @FXML
+    private ListView listecapteurs;
     
     public void digit(){
         menubtn.setText("Digital");
@@ -36,6 +46,16 @@ public class MainpageController {
     
     public void icone(){
         menubtn.setText("Icones");
+    }
+    ModeleCapteur data = new ModeleCapteur();
+    ObservableList<Capteur> ObsCapteurs = data.getLesCapteurs();
+
+    @FXML
+    public void initialize() {
+        
+        listecapteurs.setItems(ObsCapteurs);
+       
+        
     }
     
     public void validation() throws IOException{
