@@ -25,10 +25,10 @@
             <Font size="37.0" />
          </font></Label>
       <Button mnemonicParsing="false" onAction="#onExit" text="Quitter" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Label text="Capteur X" GridPane.valignment="TOP" />
+      <Label fx:id="nom" text="Capteur X" GridPane.valignment="TOP" />
       
       
-      <Label text="${controller.monCapteur.temperature}" />
+      <Label fx:id="temp" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
    </children>
 </GridPane>

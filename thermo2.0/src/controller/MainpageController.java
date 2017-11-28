@@ -61,9 +61,13 @@ public class MainpageController {
     public void validation() throws IOException{
         switch(menubtn.getText()){
             case "Digital":
+                Capteur cap= new Capteur("Capteur 1",10,10);
                 Stage digitale = new Stage();
-                Parent digit = FXMLLoader.load(getClass().getResource("/ihm/FenetreDigital.fxml"));
-                digitale.setScene(new Scene(digit));
+                FenetreDigitalController f;
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/FenetreDigital.fxml"));
+                digitale.setScene(new Scene(loader.load()));
+                f=loader.getController();
+                f.setMonCapteur(cap);
                 digitale.setResizable(false);
                 digitale.centerOnScreen();
                 digitale.setTitle("Mon capteur");

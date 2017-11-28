@@ -44,7 +44,7 @@ public class Capteur {
         this.temperature.set(temperature);
         this.frequence.set(frequence);
     }
-    
+
     
     
     @Override
