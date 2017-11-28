@@ -28,6 +28,8 @@ public class FenetreDigitalController {
     private TextField textField;
     @FXML
     private Label nom;
+    @FXML
+    private Label temp;
 
     private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>(new Capteur("lambda", 666, 1));
         public final Capteur getMonCapteur()  { return monCapteur.get(); }
@@ -36,12 +38,8 @@ public class FenetreDigitalController {
         
     
     public void initialize() {
-
         nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
-
-
-        //getMonCapteur().nomCapteurProperty().bind(nom.textProperty());
-       // nomBinding.textProperty().bind(getMonCapteur().nomCapteurProperty());
+        //temp.textProperty().bind(Bindings.select(monCapteur,"temperature"));
     }   
     
     public void onExit(Event event){

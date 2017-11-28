@@ -36,7 +36,9 @@ public class Thermo20 extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        System.out.println("Le nom du thread principal est " + Thread.currentThread().getName());
+                launch(args);
+
     }
     
 }

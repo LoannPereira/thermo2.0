@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -24,15 +26,15 @@
       <RowConstraints />
   </rowConstraints>
    <children>
-      <ListView fx:id="listecapteurs" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3">
+      <ListView fx:id="listeCapteurs" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" GridPane.rowSpan="3">
          <GridPane.margin>
-            <Insets bottom="20.0" />
+            <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
          </GridPane.margin></ListView>
       <MenuButton fx:id="menubtn" mnemonicParsing="false" text="Sélectionnez une option" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#digit" text="digital" />
-          <MenuItem mnemonicParsing="false" onAction="#thermo" text="thermomètre" />
-            <MenuItem mnemonicParsing="false" onAction="#icone" text="icones" />
+          <MenuItem mnemonicParsing="false" onAction="#digit" text="Digital" />
+          <MenuItem mnemonicParsing="false" onAction="#thermo" text="Thermomètre" />
+            <MenuItem mnemonicParsing="false" onAction="#icone" text="Icones" />
         </items>
       </MenuButton>
       <Label text="Thermo2.0" textFill="#0062ff" GridPane.columnSpan="2" GridPane.halignment="CENTER">
@@ -45,6 +47,50 @@
       <Label fx:id="ermsg" text="Veuillez séléctionner une option" textFill="RED" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets top="15.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Sélectionnez un capteur" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+      <Label text="Sélectionnez un Algo" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+      <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+         <GridPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
+         </GridPane.margin>
+      </ListView>
+      <ImageView fx:id="imgCapteur" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="10.0" top="2.0" />
+         </GridPane.margin>
+         <image>
+            <Image url="@../img/cross.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgAlgo" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets right="20.0" top="2.0" />
+         </GridPane.margin>
+         <image>
+            <Image url="@../img/cross.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nomCapteur" text="Aucun" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Label>
+      <Label text="Capteur séléctionné:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Algo séléctionné: " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Label fx:id="nomAlgo" text="Aucun" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="20.0" />
          </GridPane.margin>
       </Label>
    </children>
