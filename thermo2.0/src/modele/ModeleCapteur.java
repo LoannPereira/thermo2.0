@@ -25,7 +25,7 @@ public class ModeleCapteur {
         public ReadOnlyListProperty<Capteur> lesCapteursProperty() {return lesCapteurs;}
 
     public ModeleCapteur(){
-        lesCapteursObs.add(new Capteur("Capteur1",20,10));
+        lesCapteursObs.add(new Capteur("Capteur1",20,2));
         lesCapteursObs.add(new Capteur("Capteur2",10,5));
         lesCapteursObs.add(new Capteur("Capteur3",5,1));
     }

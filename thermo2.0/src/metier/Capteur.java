@@ -39,7 +39,7 @@ public class Capteur {
     private static final int TMAX=50;
     
     private static final int TMIN=-50;
-    MonThread t;
+    MonThread t ;
     
     
     public Capteur(String nomCapteur,int temperature, int frequence) {
@@ -47,13 +47,17 @@ public class Capteur {
         this.temperature.set(temperature);
         this.frequence.set(frequence);
         t= new MonThread(this);
+        t.setName("TH"+nomCapteur);
     }
 
     public void arret(){
+        System.out.println("Arret du thread: "+t);
         t.interrupt();
     }
     public void demarrer(){
+        System.out.println("demarrage du thread: "+t);
         t.start();
+        
     }
     
     

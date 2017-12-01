@@ -6,6 +6,7 @@
 package metier;
 
 import java.util.Random;
+import javafx.application.Platform;
 
 /**
  *
@@ -22,13 +23,17 @@ public class MonThread extends Thread {
     @Override
     public void run(){
         while(true){
-            System.out.println(capteur.getTemperature());
-            capteur.setTemperature(temperature.nextInt(100)-50);
+            System.out.println("temperature ="+capteur.getTemperature());
+            Platform.runLater(new Runnable() {
+            @Override
+             public void run() {
+                 capteur.setTemperature(temperature.nextInt(100)-50);
+            }
+            });
             try {
-                this.sleep(capteur.getFrequence()*1000);
+                Thread.sleep(capteur.getFrequence()*1000);
                
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
                 break;
             }
         }

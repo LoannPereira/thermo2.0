@@ -60,7 +60,7 @@
             <Font size="33.0" />
          </font>
       </Label>
-      <Label fx:id="temp" text="Temp" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Label fx:id="tem" text="Temp" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <font>
             <Font size="46.0" />
          </font>

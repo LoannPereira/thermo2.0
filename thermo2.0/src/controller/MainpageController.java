@@ -109,7 +109,8 @@ public class MainpageController {
                     FXMLLoader loaderDigitale = new FXMLLoader(getClass().getResource("/ihm/FenetreDigital.fxml"));
                     digitale.setScene(new Scene(loaderDigitale.load()));
                     f=loaderDigitale.getController();
-                    f.setMonCapteur(getCapteur(nomCapteur.getText()));
+                    f.chargement(getCapteur(nomCapteur.getText()));
+                    f.getMonCapteur().demarrer();
                     digitale.setResizable(false);
                     digitale.centerOnScreen();
                     digitale.setTitle("Mon capteur");
@@ -121,7 +122,8 @@ public class MainpageController {
                     FXMLLoader loaderTher = new FXMLLoader(getClass().getResource("/ihm/FenetreThermometre.fxml"));
                     ther.setScene(new Scene(loaderTher.load()));
                     t=loaderTher.getController();
-                    t.setMonCapteur(getCapteur(nomCapteur.getText()));
+                    t.chargement(getCapteur(nomCapteur.getText()));
+                    t.getMonCapteur().demarrer();
                     ther.setResizable(false);
                     ther.centerOnScreen();
                     ther.setTitle("Mon capteur");
@@ -134,7 +136,7 @@ public class MainpageController {
                     FXMLLoader loaderIcone = new FXMLLoader(getClass().getResource("/ihm/FenetreIcone.fxml"));
                     icone.setScene(new Scene(loaderIcone.load()));
                     i=loaderIcone.getController();
-                    i.setMonCapteur(getCapteur(nomCapteur.getText()));
+                    //i.chargement(getCapteur(nomCapteur.getText()));
                     icone.setResizable(false);
                     icone.centerOnScreen();
                     icone.setTitle("Mon capteur");

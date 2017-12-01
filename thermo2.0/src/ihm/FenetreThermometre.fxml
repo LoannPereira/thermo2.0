@@ -5,6 +5,8 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FenetreThermometreController">
@@ -19,11 +21,21 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="temp" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
       <Button mnemonicParsing="false" onAction="#onExit" text="Quitter" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Label text="Capteur X" GridPane.valignment="TOP" />
+      <Label text="Nom du capteur:" GridPane.valignment="BOTTOM" />
+      <Label text="Thermomètre" GridPane.columnIndex="1">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="nom" text="nomCapteur" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
+      <Circle fill="WHITE" radius="13.0" stroke="WHITE" strokeMiterLimit="3.0" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Label text="Min" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <Label text="Max" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="154.0" stroke="WHITE" strokeType="INSIDE" width="26.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <Rectangle fx:id="thermo" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="92.0" stroke="TRANSPARENT" strokeType="INSIDE" width="26.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <Circle fill="#ff1f1f" radius="32.0" stroke="TRANSPARENT" strokeMiterLimit="3.0" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
+      <Label fx:id="tem" text="tem" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label fx:id="tem1" text="tem" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>

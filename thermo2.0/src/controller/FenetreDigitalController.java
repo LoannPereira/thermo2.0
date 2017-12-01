@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.awt.event.ActionListener;
 import metier.Capteur;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,24 +30,27 @@ public class FenetreDigitalController {
     @FXML
     private Label nom;
     @FXML
-    private Label temp;
+    private Label tem;
 
-    private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>(new Capteur("lambda", 666, 1));
+    private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>();
         public final Capteur getMonCapteur()  { return monCapteur.get(); }
         public final void setMonCapteur(Capteur value) { monCapteur.set(value); }
         public ObjectProperty<Capteur> monCapteurProperty() {return monCapteur;}
         
     
-    public void initialize() {
-        monCapteur.get().demarrer();
-        nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
-        
-        //temp.textProperty().bind(Bindings.select(monCapteur,"temperature"));
-    }   
+  
     
     public void onExit(Event event){
+       // System.out.println("Arret de : "+monCapteur.get());
+       // System.out.println("Arret du thread: "+Thread.currentThread());
+
         monCapteur.get().arret();
         ((Node)event.getSource()).getScene().getWindow().hide();
         
-    }  
+    }
+    public void chargement(Capteur cap){
+        setMonCapteur(cap);
+        nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
+        tem.textProperty().bind(Bindings.selectInteger(monCapteur, "temperature").asString());
+    }
 }
