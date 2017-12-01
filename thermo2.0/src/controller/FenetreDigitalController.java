@@ -38,15 +38,15 @@ public class FenetreDigitalController {
         
     
     public void initialize() {
+        monCapteur.get().demarrer();
         nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
+        
         //temp.textProperty().bind(Bindings.select(monCapteur,"temperature"));
     }   
     
     public void onExit(Event event){
-        
+        monCapteur.get().arret();
         ((Node)event.getSource()).getScene().getWindow().hide();
-    }
-
-
-    
+        
+    }  
 }

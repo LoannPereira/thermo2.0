@@ -7,8 +7,10 @@ package metier;
 
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.LongProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -29,22 +31,30 @@ public class Capteur {
         public void setTemperature(int temperature) {this.temperature.set(temperature);}
         public IntegerProperty temperatureProperty(){return temperature;}
        
-    private final IntegerProperty frequence = new SimpleIntegerProperty();
-        public int getFrequence() {return frequence.get();}
+    private final LongProperty frequence = new SimpleLongProperty();
+        public long getFrequence() {return frequence.get();}
         public void setFrequence(int frequence) {this.frequence.set(frequence);}
-        public IntegerProperty frequenceProperty(){return frequence;}
+        public LongProperty frequenceProperty(){return frequence;}
     
     private static final int TMAX=50;
     
     private static final int TMIN=-50;
-   
+    MonThread t;
+    
     
     public Capteur(String nomCapteur,int temperature, int frequence) {
         this.nomCapteur.set(nomCapteur);
         this.temperature.set(temperature);
         this.frequence.set(frequence);
+        t= new MonThread(this);
     }
 
+    public void arret(){
+        t.interrupt();
+    }
+    public void demarrer(){
+        t.start();
+    }
     
     
     @Override

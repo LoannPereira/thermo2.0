@@ -98,15 +98,17 @@ public class MainpageController {
     }
     
     public void validation() throws IOException{
+        FenetreDigitalController f;
+        FenetreThermometreController t;
+        FenetreIconeController i;
         if(!nomCapteur.getText().equals("Aucun")){
             switch(menubtn.getText()){
                 case "Digital":
                 
                     Stage digitale = new Stage();
-                    FenetreDigitalController f;
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/FenetreDigital.fxml"));
-                    digitale.setScene(new Scene(loader.load()));
-                    f=loader.getController();
+                    FXMLLoader loaderDigitale = new FXMLLoader(getClass().getResource("/ihm/FenetreDigital.fxml"));
+                    digitale.setScene(new Scene(loaderDigitale.load()));
+                    f=loaderDigitale.getController();
                     f.setMonCapteur(getCapteur(nomCapteur.getText()));
                     digitale.setResizable(false);
                     digitale.centerOnScreen();
@@ -116,8 +118,10 @@ public class MainpageController {
             
                 case "Thermometre":
                     Stage ther = new Stage();
-                    Parent therm = FXMLLoader.load(getClass().getResource("/ihm/FenetreThermometre.fxml"));
-                    ther.setScene(new Scene(therm));
+                    FXMLLoader loaderTher = new FXMLLoader(getClass().getResource("/ihm/FenetreThermometre.fxml"));
+                    ther.setScene(new Scene(loaderTher.load()));
+                    t=loaderTher.getController();
+                    t.setMonCapteur(getCapteur(nomCapteur.getText()));
                     ther.setResizable(false);
                     ther.centerOnScreen();
                     ther.setTitle("Mon capteur");
@@ -127,8 +131,10 @@ public class MainpageController {
             
                 case "Icones":
                     Stage icone = new Stage();
-                    Parent ico = FXMLLoader.load(getClass().getResource("/ihm/FenetreIcone.fxml"));
-                    icone.setScene(new Scene(ico));
+                    FXMLLoader loaderIcone = new FXMLLoader(getClass().getResource("/ihm/FenetreIcone.fxml"));
+                    icone.setScene(new Scene(loaderIcone.load()));
+                    i=loaderIcone.getController();
+                    i.setMonCapteur(getCapteur(nomCapteur.getText()));
                     icone.setResizable(false);
                     icone.centerOnScreen();
                     icone.setTitle("Mon capteur");
