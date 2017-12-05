@@ -32,7 +32,7 @@
             <Insets top="50.0" />
          </GridPane.margin>
       </ImageView>
-      <Label text="nomCapteur" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
+      <Label fx:id="nom" text="nomCapteur" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
       <Label fx:id="temp" text="temp" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
    </children>
 </GridPane>

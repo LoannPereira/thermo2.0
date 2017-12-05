@@ -61,9 +61,8 @@ public class Capteur {
         System.out.println("Vivant avant démarrage ?"+t.isAlive());
         System.out.println("demarrage du thread: "+t);
         this.t.start();
-        
-        
     }
+    
     
     
     @Override

@@ -23,25 +23,28 @@ public class FenetreIconeController {
     private Label nomCapteur;
     @FXML
     private Label temp;
+    @FXML
+    private Label nom;
 
-    private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>(new Capteur("lambda", 666, 1));
+     private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>();
         public final Capteur getMonCapteur()  { return monCapteur.get(); }
         public final void setMonCapteur(Capteur value) { monCapteur.set(value); }
         public ObjectProperty<Capteur> monCapteurProperty() {return monCapteur;}
         
     
-    public void initialize() {
-        //nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
-        //temp.textProperty().bind(Bindings.select(monCapteur,"temperature"));
-        
-    }
+  
+    
     public void onExit(Event event){
+       // System.out.println("Arret de : "+monCapteur.get());
+       // System.out.println("Arret du thread: "+Thread.currentThread());
+
         monCapteur.get().arret();
         ((Node)event.getSource()).getScene().getWindow().hide();
+        
     }
     public void chargement(Capteur cap){
         setMonCapteur(cap);
-        nomCapteur.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
+        nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
         temp.textProperty().bind(Bindings.selectInteger(monCapteur, "temperature").asString());
     }
 }

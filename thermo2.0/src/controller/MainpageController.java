@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -44,6 +45,7 @@ public class MainpageController {
     public ImageView imgAlgo;
     @FXML
     private Label nomCapteur;
+
     
     public void digit(){
         menubtn.setText("Digital");
@@ -58,12 +60,13 @@ public class MainpageController {
     }
     ModeleCapteur data = new ModeleCapteur();
     ObservableList<Capteur> ObsCapteurs = data.getLesCapteurs();
-
+    ObservableList<String> ObsAlgo;
     
     
     
     @FXML
     public void initialize() {
+        
         listeCapteurs.setItems(ObsCapteurs);
         listeCapteurs.setCellFactory((param) -> {
             return new ListCell<Capteur>(){
@@ -88,13 +91,21 @@ public class MainpageController {
                 nomCapteur.textProperty().bindBidirectional(newV.nomCapteurProperty());
             }
         });
+
         
-        if(!listeCapteurs.getSelectionModel().isEmpty()){
-            Image image = new Image("@../img/tick.png");
-            imgCapteur.setImage(image);
-            
-        }
-        
+    }
+    
+    public void ajoutCapteur() throws IOException{
+        FenetreAjoutCapteurController f;
+        Stage ajout = new Stage();
+        FXMLLoader loaderDigitale = new FXMLLoader(getClass().getResource("/ihm/FenetreAjoutCapteur.fxml"));
+        ajout.setScene(new Scene(loaderDigitale.load()));
+        f=loaderDigitale.getController();
+        f.getModel(ObsCapteurs);
+        ajout.setResizable(false);
+        ajout.centerOnScreen();
+        ajout.setTitle("Mon capteur");
+        ajout.show(); 
     }
     
     public void validation() throws IOException{
