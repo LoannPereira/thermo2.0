@@ -36,6 +36,5 @@
       <Rectangle fx:id="thermo" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="92.0" stroke="TRANSPARENT" strokeType="INSIDE" width="26.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
       <Circle fill="#ff1f1f" radius="32.0" stroke="TRANSPARENT" strokeMiterLimit="3.0" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER" />
       <Label fx:id="tem" text="tem" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Label fx:id="tem1" text="tem" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
    </children>
 </GridPane>

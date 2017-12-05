@@ -30,8 +30,7 @@ public class FenetreThermometreController {
     private Rectangle thermo ;
     @FXML
     private Label tem;
-        @FXML
-    private Label tem1;
+
     private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>();
         public final Capteur getMonCapteur()  { return monCapteur.get(); }
         public final void setMonCapteur(Capteur value) { monCapteur.set(value); }

@@ -20,7 +20,7 @@ import metier.Capteur;
  */
 public class FenetreIconeController {
     @FXML
-    private Label nom;
+    private Label nomCapteur;
     @FXML
     private Label temp;
 
@@ -33,8 +33,15 @@ public class FenetreIconeController {
     public void initialize() {
         //nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
         //temp.textProperty().bind(Bindings.select(monCapteur,"temperature"));
+        
     }
     public void onExit(Event event){
+        monCapteur.get().arret();
         ((Node)event.getSource()).getScene().getWindow().hide();
+    }
+    public void chargement(Capteur cap){
+        setMonCapteur(cap);
+        nomCapteur.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
+        temp.textProperty().bind(Bindings.selectInteger(monCapteur, "temperature").asString());
     }
 }

@@ -6,6 +6,8 @@
 package metier;
 
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.ObjectProperty;
@@ -46,17 +48,20 @@ public class Capteur {
         this.nomCapteur.set(nomCapteur);
         this.temperature.set(temperature);
         this.frequence.set(frequence);
-        t= new MonThread(this);
-        t.setName("TH"+nomCapteur);
+        
     }
 
     public void arret(){
         System.out.println("Arret du thread: "+t);
         t.interrupt();
+        System.out.println("Vivant après arret ?"+t.isAlive());
     }
     public void demarrer(){
+        t= new MonThread(this);
+        System.out.println("Vivant avant démarrage ?"+t.isAlive());
         System.out.println("demarrage du thread: "+t);
-        t.start();
+        this.t.start();
+        
         
     }
     

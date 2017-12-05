@@ -136,7 +136,7 @@ public class MainpageController {
                     FXMLLoader loaderIcone = new FXMLLoader(getClass().getResource("/ihm/FenetreIcone.fxml"));
                     icone.setScene(new Scene(loaderIcone.load()));
                     i=loaderIcone.getController();
-                    //i.chargement(getCapteur(nomCapteur.getText()));
+                    i.chargement(getCapteur(nomCapteur.getText()));
                     icone.setResizable(false);
                     icone.centerOnScreen();
                     icone.setTitle("Mon capteur");

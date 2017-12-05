@@ -16,6 +16,7 @@ import javafx.application.Platform;
 
 public class MonThread extends Thread {
     private final Capteur capteur;
+
     Random temperature = new Random();
     public MonThread(Capteur capteur){
         this.capteur=capteur;
@@ -32,6 +33,7 @@ public class MonThread extends Thread {
             });
             try {
                 Thread.sleep(capteur.getFrequence()*1000);
+                
                
             } catch (InterruptedException e) {
                 break;
