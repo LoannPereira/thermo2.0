@@ -12,6 +12,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import metier.Capteur;
 
 /**
@@ -25,13 +27,17 @@ public class FenetreIconeController {
     private Label temp;
     @FXML
     private Label nom;
+    @FXML
+    private ImageView image;
 
      private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>();
         public final Capteur getMonCapteur()  { return monCapteur.get(); }
         public final void setMonCapteur(Capteur value) { monCapteur.set(value); }
         public ObjectProperty<Capteur> monCapteurProperty() {return monCapteur;}
         
-    
+    public void initialize(){
+        
+    }
   
     
     public void onExit(Event event){
@@ -43,8 +49,25 @@ public class FenetreIconeController {
         
     }
     public void chargement(Capteur cap){
+        Image soleil=new Image("Image/soleil.png");
+        Image nuage=new Image("Image/nuage.png");
+        Image neige=new Image("Image/neige.png");
         setMonCapteur(cap);
         nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
         temp.textProperty().bind(Bindings.selectInteger(monCapteur, "temperature").asString());
+        getMonCapteur().temperatureProperty().addListener((o,old,newV)->{
+            if((int)newV<0){
+                System.out.println("neige");
+                image.setImage(neige);
+            }
+            if((int)newV>20){
+                System.out.println("soleil");
+                image.setImage(soleil);
+            }
+            if((int)newV>= 0&& (int)newV<=20){
+                System.out.println("nuage");
+                image.setImage(nuage);
+            }
+    });
     }
 }

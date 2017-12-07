@@ -27,7 +27,7 @@
          </font></Label>
       <Button mnemonicParsing="false" onAction="#onExit" text="Quitter" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Label text="Nom du capteur:" GridPane.valignment="BOTTOM" />
-      <ImageView fitHeight="189.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <ImageView fx:id="image" fitHeight="189.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin>

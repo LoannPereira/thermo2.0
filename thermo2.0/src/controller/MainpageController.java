@@ -148,6 +148,7 @@ public class MainpageController {
                     icone.setScene(new Scene(loaderIcone.load()));
                     i=loaderIcone.getController();
                     i.chargement(getCapteur(nomCapteur.getText()));
+                    i.getMonCapteur().demarrer();
                     icone.setResizable(false);
                     icone.centerOnScreen();
                     icone.setTitle("Mon capteur");
