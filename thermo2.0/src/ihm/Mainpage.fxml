@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -42,7 +43,7 @@
             <Font size="38.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" onAction="#validation" text="Valider" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+      <Button mnemonicParsing="false" onAction="#validation" prefHeight="51.0" prefWidth="89.0" text="Valider" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
       <Button mnemonicParsing="false" onAction="#onExit" text="Quitter" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <Label fx:id="ermsg" text="Veuillez séléctionner une option" textFill="RED" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <GridPane.margin>
@@ -53,15 +54,6 @@
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin></Label>
-      <Label text="Sélectionnez un Algo" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="10.0" />
-         </GridPane.margin></Label>
-      <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
-         <GridPane.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="25.0" />
-         </GridPane.margin>
-      </ListView>
       <ImageView fx:id="imgCapteur" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets right="10.0" top="2.0" />
@@ -93,10 +85,40 @@
             <Insets top="20.0" />
          </GridPane.margin>
       </Label>
-      <Button  onAction="#ajoutCapteur" mnemonicParsing="false" text="Ajouter un capteur" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Button mnemonicParsing="false" onAction="#ajoutCapteur" text="Ajouter un capteur" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="20.0" />
          </GridPane.margin>
       </Button>
+      <MenuButton fx:id="algobtn" mnemonicParsing="false" text="selectionnez un Algo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#aleat" text="Aléatoire" />
+          <MenuItem mnemonicParsing="false" onAction="#inter" text="Intervalle" />
+            <MenuItem mnemonicParsing="false" onAction="#fenetreglissante" text="Fenêtre" />
+        </items>
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </MenuButton>
+      <TextField fx:id="min" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="47.0" text="min" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="20.0" top="40.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label fx:id="param" text="Paramètres" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets bottom="40.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="max" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="47.0" text="max" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets right="20.0" top="40.0" />
+         </GridPane.margin>
+      </TextField>
+      <TextField fx:id="fenetre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="60.0" text="fenêtre" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="60.0" />
+         </GridPane.margin>
+      </TextField>
    </children>
 </GridPane>

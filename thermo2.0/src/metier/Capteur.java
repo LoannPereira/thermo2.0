@@ -51,17 +51,6 @@ public class Capteur {
         
     }
 
-    public void arret(){
-        System.out.println("Arret du thread: "+t);
-        t.interrupt();
-        System.out.println("Vivant après arret ?"+t.isAlive());
-    }
-    public void demarrer(){
-        t= new MonThread(this);
-        System.out.println("Vivant avant démarrage ?"+t.isAlive());
-        System.out.println("demarrage du thread: "+t);
-        this.t.start();
-    }
     
     
     

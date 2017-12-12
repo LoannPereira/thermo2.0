@@ -21,9 +21,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import menu.Menu;
+import menu.MenuDigital;
+import menu.MenuIcone;
+import menu.MenuThermo;
 import metier.Capteur;
 import modele.ModeleCapteur;
 
@@ -32,11 +37,14 @@ import modele.ModeleCapteur;
  * @author lopereira2
  */
 public class MainpageController {
-    
     @FXML
     MenuButton menubtn;
     @FXML
-    Label ermsg;
+    MenuButton algobtn;
+    @FXML
+    public Label ermsg;
+    @FXML
+    Label param;
     @FXML
     private ListView<Capteur> listeCapteurs;
     @FXML
@@ -45,18 +53,49 @@ public class MainpageController {
     public ImageView imgAlgo;
     @FXML
     private Label nomCapteur;
-
-    
+    @FXML
+    private TextField min;
+    @FXML
+    private TextField max;
+    @FXML
+    private TextField fenetre;
+    MenuDigital menudigit = new MenuDigital();
+    MenuThermo menuthermo = new MenuThermo();
+    MenuIcone menuicone = new MenuIcone();
+    Menu menucourant ;
     public void digit(){
         menubtn.setText("Digital");
+        menucourant= menudigit;
     }
     
     public void thermo(){
         menubtn.setText("Thermometre");
+        menucourant= menuthermo;
     }
     
     public void icone(){
-        menubtn.setText("Icones");
+        menubtn.setText("Icone");
+        menucourant= menuicone;
+    }
+    
+    public void aleat(){
+         algobtn.setText("Aléatoire");
+         
+    }
+     public void inter(){
+         algobtn.setText("Intervalle");
+         param.setVisible(true);
+         min.setVisible(true);
+         max.setVisible(true);
+         fenetre.setVisible(false);
+    }
+      public void fenetreglissante(){
+         algobtn.setText("Fenêtre Glissante");
+         min.setVisible(false);
+         max.setVisible(false);
+         param.setVisible(true);
+         fenetre.setVisible(true);
+
     }
     ModeleCapteur data = new ModeleCapteur();
     ObservableList<Capteur> ObsCapteurs = data.getLesCapteurs();
@@ -66,7 +105,6 @@ public class MainpageController {
     
     @FXML
     public void initialize() {
-        
         listeCapteurs.setItems(ObsCapteurs);
         listeCapteurs.setCellFactory((param) -> {
             return new ListCell<Capteur>(){
@@ -113,52 +151,7 @@ public class MainpageController {
         FenetreThermometreController t;
         FenetreIconeController i;
         if(!nomCapteur.getText().equals("Aucun")){
-            switch(menubtn.getText()){
-                case "Digital":
-                
-                    Stage digitale = new Stage();
-                    FXMLLoader loaderDigitale = new FXMLLoader(getClass().getResource("/ihm/FenetreDigital.fxml"));
-                    digitale.setScene(new Scene(loaderDigitale.load()));
-                    f=loaderDigitale.getController();
-                    f.chargement(getCapteur(nomCapteur.getText()));
-                    f.getMonCapteur().demarrer();
-                    digitale.setResizable(false);
-                    digitale.centerOnScreen();
-                    digitale.setTitle("Mon capteur");
-                    digitale.show(); 
-                break;
-            
-                case "Thermometre":
-                    Stage ther = new Stage();
-                    FXMLLoader loaderTher = new FXMLLoader(getClass().getResource("/ihm/FenetreThermometre.fxml"));
-                    ther.setScene(new Scene(loaderTher.load()));
-                    t=loaderTher.getController();
-                    t.chargement(getCapteur(nomCapteur.getText()));
-                    t.getMonCapteur().demarrer();
-                    ther.setResizable(false);
-                    ther.centerOnScreen();
-                    ther.setTitle("Mon capteur");
-                    ther.show(); 
-                
-                break;
-            
-                case "Icones":
-                    Stage icone = new Stage();
-                    FXMLLoader loaderIcone = new FXMLLoader(getClass().getResource("/ihm/FenetreIcone.fxml"));
-                    icone.setScene(new Scene(loaderIcone.load()));
-                    i=loaderIcone.getController();
-                    i.chargement(getCapteur(nomCapteur.getText()));
-                    i.getMonCapteur().demarrer();
-                    icone.setResizable(false);
-                    icone.centerOnScreen();
-                    icone.setTitle("Mon capteur");
-                    icone.show();
-                
-                break;
-                default:
-                   ermsg.setVisible(true);
-                break;
-            }    
+            menucourant.lancement(getCapteur(nomCapteur.getText()));
         }
         else 
             ermsg.setVisible(true);

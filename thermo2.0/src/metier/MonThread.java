@@ -15,24 +15,19 @@ import javafx.application.Platform;
     
 
 public class MonThread extends Thread {
-    private final Capteur capteur;
+    private final Generateur gen;
 
-    Random temperature = new Random();
-    public MonThread(Capteur capteur){
-        this.capteur=capteur;
+    //Random temperature = new Random();
+    public MonThread(Generateur gen){
+        this.gen=gen;
     }
     @Override
     public void run(){
         while(true){
-            System.out.println("temperature ="+capteur.getTemperature());
-            Platform.runLater(new Runnable() {
-            @Override
-             public void run() {
-                 capteur.setTemperature(temperature.nextInt(100)-50);
-            }
-            });
+            //System.out.println("temperature ="+capteur.getTemperature());
+            Platform.runLater(() -> gen.algo());
             try {
-                Thread.sleep(capteur.getFrequence()*1000);
+                Thread.sleep(gen.getFrequence());
                 
                
             } catch (InterruptedException e) {

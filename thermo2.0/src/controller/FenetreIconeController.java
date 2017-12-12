@@ -44,11 +44,12 @@ public class FenetreIconeController {
        // System.out.println("Arret de : "+monCapteur.get());
        // System.out.println("Arret du thread: "+Thread.currentThread());
 
-        monCapteur.get().arret();
+        //monCapteur.get().arret();
         ((Node)event.getSource()).getScene().getWindow().hide();
         
     }
     public void chargement(Capteur cap){
+        System.out.println(cap);
         Image soleil=new Image("Image/soleil.png");
         Image nuage=new Image("Image/nuage.png");
         Image neige=new Image("Image/neige.png");

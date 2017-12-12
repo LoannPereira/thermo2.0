@@ -44,7 +44,7 @@ public class FenetreDigitalController {
        // System.out.println("Arret de : "+monCapteur.get());
        // System.out.println("Arret du thread: "+Thread.currentThread());
 
-        monCapteur.get().arret();
+        //monCapteur.get().arret();
         ((Node)event.getSource()).getScene().getWindow().hide();
         
     }
