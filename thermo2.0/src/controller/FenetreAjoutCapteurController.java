@@ -137,7 +137,7 @@ public class FenetreAjoutCapteurController {
                 Integer.parseInt(fieldPoids.getText());
                 listeCapteurDispo.getSelectionModel().getSelectedItem().setPoids(Integer.parseInt(fieldPoids.getText()));
                 listeCreation.add(listeCapteurDispo.getSelectionModel().getSelectedItem()); 
-                System.out.println(listeCreation.get(0).getPoids());
+                fieldPoids.setText("");
             }
             else{
                 if(listeCapteurDispo.getSelectionModel().getSelectedIndex()==-1){
@@ -147,7 +147,7 @@ public class FenetreAjoutCapteurController {
             
                 else {
                     erreurPoidsLabel.setText(erreurPoidsInvalide);
-                    erreurPoidsLabel.setVisible(true);
+                erreurPoidsLabel.setVisible(true);
                 }
             }
         }    

@@ -21,44 +21,18 @@ import javafx.beans.property.StringProperty;
  *
  * @author argiraud
  */
-public class Capteur {
+public class Capteur extends ComposantCapteurGlobal {
     
-    private final StringProperty nomCapteur = new SimpleStringProperty();
-        public String getNomCapteur() {return nomCapteur.get();}
-        public void setNomCapteur(String nom) {this.nomCapteur.set(nom);}
-        public StringProperty nomCapteurProperty(){return nomCapteur;}
-
-    private final IntegerProperty temperature = new SimpleIntegerProperty();
-        public int getTemperature() {return temperature.get();}
-        public void setTemperature(int temperature) {this.temperature.set(temperature);}
-        public IntegerProperty temperatureProperty(){return temperature;}
-       
-    private final LongProperty frequence = new SimpleLongProperty();
-        public long getFrequence() {return frequence.get();}
-        public void setFrequence(int frequence) {this.frequence.set(frequence);}
-        public LongProperty frequenceProperty(){return frequence;}
     
-    private static final int TMAX=50;
     
-    private static final int TMIN=-50;
-    MonThread t ;
-    private int poids;
     
     public Capteur(String nomCapteur,int temperature, int frequence) {
-        this.nomCapteur.set(nomCapteur);
-        this.temperature.set(temperature);
-        this.frequence.set(frequence);
+        this.setNomCapteur(nomCapteur);
+        this.setTemperature(temperature);
+        this.setFrequence(frequence);
         
     }
 
-    public void setPoids(int p){
-        this.poids=p;
-    }
-    
-    public int getPoids(){
-        return this.poids;
-    }
-    
     @Override
     public String toString()
     {
