@@ -30,7 +30,11 @@ import menu.MenuDigital;
 import menu.MenuIcone;
 import menu.MenuThermo;
 import metier.Capteur;
+import metier.Generateur;
 import modele.ModeleCapteur;
+import metier.GenerationAleatoire;
+import metier.GenerationGlissante;
+import metier.GenerationInter;
 
 /**
  *
@@ -46,6 +50,8 @@ public class MainpageController {
     @FXML
     Label param;
     @FXML
+    Label nomAlgo;
+    @FXML
     private ListView<Capteur> listeCapteurs;
     @FXML
     private ImageView imgCapteur;
@@ -59,35 +65,41 @@ public class MainpageController {
     private TextField max;
     @FXML
     private TextField fenetre;
-    MenuDigital menudigit = new MenuDigital();
-    MenuThermo menuthermo = new MenuThermo();
-    MenuIcone menuicone = new MenuIcone();
     Menu menucourant ;
+    
+    Generateur gen;
+
     public void digit(){
         menubtn.setText("Digital");
-        menucourant= menudigit;
+        menucourant= new MenuDigital();
     }
     
     public void thermo(){
         menubtn.setText("Thermometre");
-        menucourant= menuthermo;
+        menucourant= new MenuThermo();
     }
     
     public void icone(){
         menubtn.setText("Icone");
-        menucourant= menuicone;
+        menucourant= new MenuIcone();
     }
     
     public void aleat(){
          algobtn.setText("Aléatoire");
+         min.setVisible(false);
+         max.setVisible(false);
+         param.setVisible(false);
+         fenetre.setVisible(false);
          
     }
+    
      public void inter(){
          algobtn.setText("Intervalle");
          param.setVisible(true);
          min.setVisible(true);
          max.setVisible(true);
          fenetre.setVisible(false);
+         
     }
       public void fenetreglissante(){
          algobtn.setText("Fenêtre Glissante");
@@ -95,8 +107,36 @@ public class MainpageController {
          max.setVisible(false);
          param.setVisible(true);
          fenetre.setVisible(true);
-
     }
+      
+      public void selectAlgo(){
+          System.out.println(algobtn.getText());
+          switch(algobtn.getText()){
+              case "Aléatoire":
+                  gen= new GenerationAleatoire(getCapteur(nomCapteur.getText()));
+                  break;
+                  
+              case "Intervalle":
+                  if(min.getText()!=null && max.getText()!=null){
+                     gen = new GenerationInter(getCapteur(nomCapteur.getText()),Integer.parseInt(min.getText()),Integer.parseInt(max.getText()));
+                      
+                  }
+                  else{
+                    ermsg.setVisible(true);
+                  }
+                  break;
+              case "Fenêtre Glissante":
+                  if(fenetre.getText()!=null){
+                     gen = new GenerationGlissante(getCapteur(nomCapteur.getText()),Integer.parseInt(fenetre.getText()));
+
+                  } 
+                  break;
+              default : 
+                  ermsg.setVisible(true);
+                  break;
+                  
+          }
+      }
     ModeleCapteur data = new ModeleCapteur();
     ObservableList<Capteur> ObsCapteurs = data.getLesCapteurs();
     ObservableList<String> ObsAlgo;
@@ -129,6 +169,8 @@ public class MainpageController {
                 nomCapteur.textProperty().bindBidirectional(newV.nomCapteurProperty());
             }
         });
+        nomAlgo.textProperty().bind(algobtn.textProperty());
+        
 
         
     }
@@ -151,7 +193,8 @@ public class MainpageController {
         FenetreThermometreController t;
         FenetreIconeController i;
         if(!nomCapteur.getText().equals("Aucun")){
-            menucourant.lancement(getCapteur(nomCapteur.getText()));
+           selectAlgo();
+            menucourant.lancement(getCapteur(nomCapteur.getText()),gen);
         }
         else 
             ermsg.setVisible(true);

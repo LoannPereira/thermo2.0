@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import metier.Generateur;
 
 /**
  *
@@ -31,7 +32,7 @@ public class FenetreDigitalController {
     private Label nom;
     @FXML
     private Label tem;
-
+    private Generateur gen;
     private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>();
         public final Capteur getMonCapteur()  { return monCapteur.get(); }
         public final void setMonCapteur(Capteur value) { monCapteur.set(value); }
@@ -44,12 +45,13 @@ public class FenetreDigitalController {
        // System.out.println("Arret de : "+monCapteur.get());
        // System.out.println("Arret du thread: "+Thread.currentThread());
 
-        //monCapteur.get().arret();
+        gen.arret();
         ((Node)event.getSource()).getScene().getWindow().hide();
         
     }
-    public void chargement(Capteur cap){
+    public void chargement(Capteur cap, Generateur gen){
         setMonCapteur(cap);
+        this.gen=gen;
         nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));
         tem.textProperty().bind(Bindings.selectInteger(monCapteur, "temperature").asString());
     }

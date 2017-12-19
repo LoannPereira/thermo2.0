@@ -100,7 +100,7 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </MenuButton>
-      <TextField fx:id="min" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="47.0" text="min" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="min" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="47.0" promptText="min" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="20.0" top="40.0" />
          </GridPane.margin>
@@ -110,12 +110,12 @@
             <Insets bottom="40.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="max" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="47.0" text="max" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <TextField fx:id="max" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="47.0" promptText="max" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets right="20.0" top="40.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="fenetre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="60.0" text="fenêtre" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+      <TextField fx:id="fenetre" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="27.0" prefWidth="60.0" promptText="fenêtre" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="60.0" />
          </GridPane.margin>

@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import metier.Capteur;
+import metier.Generateur;
 
 /**
  *
@@ -21,14 +22,14 @@ import metier.Capteur;
 public class MenuIcone extends Menu {
     FenetreIconeController i;
     @Override
-    public void lancement(Capteur capteur){
+    public void lancement(Capteur capteur, Generateur gen){
         try {
             Stage ther = new Stage();
             FXMLLoader loaderTher = new FXMLLoader(getClass().getResource("/ihm/FenetreIcone.fxml"));
             ther.setScene(new Scene(loaderTher.load()));
             i=loaderTher.getController();
-            i.chargement(capteur);
-            //i.getMonCapteur().demarrer();
+            i.chargement(capteur, gen);
+            gen.demarrer();
             ther.setResizable(false);
             ther.centerOnScreen();
             ther.setTitle("Mon capteur");

@@ -6,12 +6,13 @@
 package menu;
 
 import metier.Capteur;
+import metier.Generateur;
 
 /**
  *
  * @author pereiraloann
  */
 public abstract class Menu {
-    public abstract void lancement(Capteur capteur);
+    public abstract void lancement(Capteur capteur,Generateur gen);
 }
 

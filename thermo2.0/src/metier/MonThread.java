@@ -27,7 +27,7 @@ public class MonThread extends Thread {
             //System.out.println("temperature ="+capteur.getTemperature());
             Platform.runLater(() -> gen.algo());
             try {
-                Thread.sleep(gen.getFrequence());
+                Thread.sleep(gen.getFrequence()*1000);
                 
                
             } catch (InterruptedException e) {

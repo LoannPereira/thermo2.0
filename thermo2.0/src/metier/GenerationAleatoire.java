@@ -17,10 +17,10 @@ public class GenerationAleatoire extends Generateur {
     Random temperature; 
     public long getFrequence(){return cap.getFrequence();}
     
+    public GenerationAleatoire(){}
     public GenerationAleatoire(Capteur cap){
         this.cap=cap;
         temperature= new Random();
-       
     }
     
     public void algo(){

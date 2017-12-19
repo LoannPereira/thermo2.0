@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import metier.Capteur;
+import metier.Generateur;
 
 /**
  *
@@ -29,7 +30,7 @@ public class FenetreIconeController {
     private Label nom;
     @FXML
     private ImageView image;
-
+    private Generateur gen;
      private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>();
         public final Capteur getMonCapteur()  { return monCapteur.get(); }
         public final void setMonCapteur(Capteur value) { monCapteur.set(value); }
@@ -44,12 +45,13 @@ public class FenetreIconeController {
        // System.out.println("Arret de : "+monCapteur.get());
        // System.out.println("Arret du thread: "+Thread.currentThread());
 
-        //monCapteur.get().arret();
+       gen.arret();
         ((Node)event.getSource()).getScene().getWindow().hide();
         
     }
-    public void chargement(Capteur cap){
+    public void chargement(Capteur cap, Generateur gen){
         System.out.println(cap);
+        this.gen=gen;
         Image soleil=new Image("Image/soleil.png");
         Image nuage=new Image("Image/nuage.png");
         Image neige=new Image("Image/neige.png");

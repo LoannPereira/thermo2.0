@@ -13,23 +13,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import metier.Capteur;
+import metier.Generateur;
 
 /**
  *
  * @author pereiraloann
  */
 public class MenuDigital extends Menu {
-     FenetreDigitalController f;
-    
-    public void lancement(Capteur capteur){
-        
+    FenetreDigitalController f;
+    Generateur g;
+    public void lancement(Capteur capteur, Generateur gen){
+
          try {
              Stage digitale = new Stage();
              FXMLLoader loaderDigitale = new FXMLLoader(getClass().getResource("/ihm/FenetreDigital.fxml"));
              digitale.setScene(new Scene(loaderDigitale.load()));
              f=loaderDigitale.getController();
-             f.chargement(capteur);
-             //f.getMonCapteur().demarrer();
+             f.chargement(capteur,gen);
+             gen.demarrer();
              digitale.setResizable(false);
              digitale.centerOnScreen();
              digitale.setTitle("Mon capteur"); 
