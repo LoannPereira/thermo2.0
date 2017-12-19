@@ -42,7 +42,7 @@ public class Capteur {
     
     private static final int TMIN=-50;
     MonThread t ;
-    
+    private int poids;
     
     public Capteur(String nomCapteur,int temperature, int frequence) {
         this.nomCapteur.set(nomCapteur);
@@ -51,8 +51,13 @@ public class Capteur {
         
     }
 
+    public void setPoids(int p){
+        this.poids=p;
+    }
     
-    
+    public int getPoids(){
+        return this.poids;
+    }
     
     @Override
     public String toString()
