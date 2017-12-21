@@ -80,7 +80,7 @@ public class FenetreAjoutCapteurController {
         listeCapteurCreation.setCellFactory((param) -> {
             return new ListCell<ComposantCapteurGlobal>(){
                //@Override
-                protected void updateItem(Capteur capteur, boolean empty) {
+                protected void updateItem(ComposantCapteurGlobal capteur, boolean empty) {
                     super.updateItem(capteur, empty);
                     if (!empty) {
                         textProperty().bind(capteur.nomCapteurProperty());
@@ -108,8 +108,8 @@ public class FenetreAjoutCapteurController {
                 }
                 else{
                     modele.add(new Capteur(nom.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(freq.getText())));
-                    ((Node)event.getSource()).getScene().getWindow().hide();
                 }
+                ((Node)event.getSource()).getScene().getWindow().hide();
                 
             }
         
