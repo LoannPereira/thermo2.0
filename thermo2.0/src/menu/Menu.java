@@ -6,6 +6,7 @@
 package menu;
 
 import metier.Capteur;
+import metier.ComposantCapteurGlobal;
 import metier.Generateur;
 
 /**
@@ -13,6 +14,6 @@ import metier.Generateur;
  * @author pereiraloann
  */
 public abstract class Menu {
-    public abstract void lancement(Capteur capteur,Generateur gen);
+    public abstract void lancement(ComposantCapteurGlobal capteur,Generateur gen);
 }
 

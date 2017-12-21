@@ -20,6 +20,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import metier.Capteur;
+import metier.ComposantCapteurGlobal;
+import metier.SuperCapteur;
 import modele.ModeleCapteur;
 
 /**
@@ -38,9 +40,9 @@ public class FenetreAjoutCapteurController {
     @FXML
     private CheckBox  checkSuperCapteur;
     @FXML
-    private ListView<Capteur> listeCapteurDispo;
+    private ListView<ComposantCapteurGlobal> listeCapteurDispo;
     @FXML
-    private ListView<Capteur> listeCapteurCreation;
+    private ListView<ComposantCapteurGlobal> listeCapteurCreation;
     @FXML
     private ComboBox comboBoxAlgo;
     @FXML
@@ -54,9 +56,9 @@ public class FenetreAjoutCapteurController {
     @FXML
     private Label erreurSuppressionLabel;
     
-    private ArrayList<Capteur>sousCapteurs;
-    ObservableList<Capteur> modele;
-    ObservableList<Capteur> listeCreation=FXCollections.observableArrayList();
+    private ArrayList<ComposantCapteurGlobal>sousCapteurs;
+    ObservableList<ComposantCapteurGlobal> modele;
+    ObservableList<ComposantCapteurGlobal> listeCreation=FXCollections.observableArrayList();
     
     private final String erreurPoidsVide="Le poids ne doit pas être nul";
     private final String erreurPoidsInvalide="Le poids doit être supérieur à 0";
@@ -76,8 +78,8 @@ public class FenetreAjoutCapteurController {
         sousCapteurs=new ArrayList<>();
         listeCapteurCreation.setItems(listeCreation);
         listeCapteurCreation.setCellFactory((param) -> {
-            return new ListCell<Capteur>(){
-               @Override
+            return new ListCell<ComposantCapteurGlobal>(){
+               //@Override
                 protected void updateItem(Capteur capteur, boolean empty) {
                     super.updateItem(capteur, empty);
                     if (!empty) {
@@ -93,18 +95,24 @@ public class FenetreAjoutCapteurController {
     }
     
     public void ajoutCapteur(Event event){
-        if(checkSuperCapteur.isSelected()){
-            
-        }
-        else{
+        
+       
             if(nom.getText().isEmpty()||temp.getText().isEmpty()||freq.getText().isEmpty()){
-            ermsg.setVisible(true);
+                ermsg.setVisible(true);
             }
             else{
-                modele.add(new Capteur(nom.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(freq.getText())));
-                ((Node)event.getSource()).getScene().getWindow().hide();
+                if(checkSuperCapteur.isSelected()){
+                    ArrayList<ComposantCapteurGlobal> liste=new ArrayList<>();
+                      liste.addAll(listeCapteurCreation.getItems());
+                      modele.add(new SuperCapteur(nom.getText(),liste));
+                }
+                else{
+                    modele.add(new Capteur(nom.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(freq.getText())));
+                    ((Node)event.getSource()).getScene().getWindow().hide();
+                }
+                
             }
-        }
+        
     }
     
     public void checkBoxSuperCapteur(Event event){
@@ -166,12 +174,12 @@ public class FenetreAjoutCapteurController {
     }
     
     
-    public void getModel(ObservableList<Capteur> m){
+    public void getModel(ObservableList<ComposantCapteurGlobal> m){
         modele = m;
         listeCapteurDispo.setItems(modele);
         listeCapteurDispo.setCellFactory((param) -> {
-            return new ListCell<Capteur>(){
-               @Override
+            return new ListCell<ComposantCapteurGlobal>(){
+               //@Override
                 protected void updateItem(Capteur capteur, boolean empty) {
                     super.updateItem(capteur, empty);
                     if (!empty) {

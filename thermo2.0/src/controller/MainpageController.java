@@ -30,11 +30,13 @@ import menu.MenuDigital;
 import menu.MenuIcone;
 import menu.MenuThermo;
 import metier.Capteur;
+import metier.ComposantCapteurGlobal;
 import metier.Generateur;
 import modele.ModeleCapteur;
 import metier.GenerationAleatoire;
 import metier.GenerationGlissante;
 import metier.GenerationInter;
+import metier.SuperCapteur;
 
 /**
  *
@@ -52,7 +54,7 @@ public class MainpageController {
     @FXML
     Label nomAlgo;
     @FXML
-    private ListView<Capteur> listeCapteurs;
+    private ListView<ComposantCapteurGlobal> listeCapteurs;
     @FXML
     private ImageView imgCapteur;
     @FXML
@@ -113,12 +115,14 @@ public class MainpageController {
           System.out.println(algobtn.getText());
           switch(algobtn.getText()){
               case "Aléatoire":
-                  gen= new GenerationAleatoire(getCapteur(nomCapteur.getText()));
+                  if(!nomCapteur.getText().startsWith("*")){
+                  gen= new GenerationAleatoire((Capteur)getCapteur(nomCapteur.getText()));
+                  }
                   break;
                   
               case "Intervalle":
-                  if(min.getText()!=null && max.getText()!=null){
-                     gen = new GenerationInter(getCapteur(nomCapteur.getText()),Integer.parseInt(min.getText()),Integer.parseInt(max.getText()));
+                  if(min.getText()!=null && max.getText()!=null&&!nomCapteur.getText().startsWith("*")){
+                     gen = new GenerationInter((Capteur)getCapteur(nomCapteur.getText()),Integer.parseInt(min.getText()),Integer.parseInt(max.getText()));
                       
                   }
                   else{
@@ -126,8 +130,9 @@ public class MainpageController {
                   }
                   break;
               case "Fenêtre Glissante":
-                  if(fenetre.getText()!=null){
-                     gen = new GenerationGlissante(getCapteur(nomCapteur.getText()),Integer.parseInt(fenetre.getText()));
+                  if(fenetre.getText()!=null && !nomCapteur.getText().startsWith("*")){
+  
+                    gen = new GenerationGlissante((Capteur)getCapteur(nomCapteur.getText()),Integer.parseInt(fenetre.getText()));
 
                   } 
                   break;
@@ -138,7 +143,7 @@ public class MainpageController {
           }
       }
     ModeleCapteur data = new ModeleCapteur();
-    ObservableList<Capteur> ObsCapteurs = data.getLesCapteurs();
+    ObservableList<ComposantCapteurGlobal> ObsCapteurs = data.getLesCapteurs();
     ObservableList<String> ObsAlgo;
     
     
@@ -147,9 +152,9 @@ public class MainpageController {
     public void initialize() {
         listeCapteurs.setItems(ObsCapteurs);
         listeCapteurs.setCellFactory((param) -> {
-            return new ListCell<Capteur>(){
+            return new ListCell<ComposantCapteurGlobal>(){
                @Override
-                protected void updateItem(Capteur capteur, boolean empty) {
+                protected void updateItem(ComposantCapteurGlobal capteur, boolean empty) {
                     super.updateItem(capteur, empty);
                     if (!empty) {
                         textProperty().bind(capteur.nomCapteurProperty());
@@ -167,6 +172,12 @@ public class MainpageController {
             }
             if (newV != null) {
                 nomCapteur.textProperty().bindBidirectional(newV.nomCapteurProperty());
+                if(newV.getNomCapteur().startsWith("*")){
+                    algobtn.setDisable(true);
+                }
+                else{
+                    algobtn.setDisable(false);
+                }
             }
         });
         nomAlgo.textProperty().bind(algobtn.textProperty());
@@ -192,12 +203,16 @@ public class MainpageController {
         FenetreDigitalController f;
         FenetreThermometreController t;
         FenetreIconeController i;
-        if(!nomCapteur.getText().equals("Aucun")){
+        if(!nomCapteur.getText().equals("Aucun")&&!nomCapteur.getText().startsWith("*")){
            selectAlgo();
-            menucourant.lancement(getCapteur(nomCapteur.getText()),gen);
+            menucourant.lancement((Capteur)getCapteur(nomCapteur.getText()),gen);
         }
-        else 
-            ermsg.setVisible(true);
+        else if(nomCapteur.getText().startsWith("*")){
+                SuperCapteur c=(SuperCapteur)getCapteur(nomCapteur.getText());
+                c.temperature();
+                menucourant.lancement((SuperCapteur)getCapteur(nomCapteur.getText()),gen);
+             }
+             else ermsg.setVisible(true);
     }
     
     /*
@@ -206,8 +221,8 @@ public class MainpageController {
     *@param nom nom du capteur
     *@return L'objet capteur voulu.
     */
-    public Capteur getCapteur(String nom){
-        for(Capteur cap : listeCapteurs.getItems()){
+    public ComposantCapteurGlobal getCapteur(String nom){
+        for(ComposantCapteurGlobal cap : listeCapteurs.getItems()){
             if(nom==cap.getNomCapteur())
                 return cap;
         }

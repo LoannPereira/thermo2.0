@@ -14,17 +14,16 @@ import java.util.ArrayList;
 public class SuperCapteur extends ComposantCapteurGlobal{
     ArrayList<ComposantCapteurGlobal> sousCapteurs;
     
-     public SuperCapteur(String nomCapteur, int frequence){
-         this.setNomCapteur(nomCapteur);
-         this.setFrequence(frequence);
-         this.sousCapteurs=new ArrayList<>();
+     public SuperCapteur(String nomCapteur,ArrayList<ComposantCapteurGlobal> sousCapteurs ){
+         this.setNomCapteur("*"+nomCapteur);
+         this.sousCapteurs=sousCapteurs;
      }
      
-     public void ajouterSousCapteur(ComposantCapteurGlobal sousCapteur){
+     private void ajouterSousCapteur(ComposantCapteurGlobal sousCapteur){
          sousCapteurs.add(sousCapteur);
      }
      
-     public void supprimerSousCapteur(ComposantCapteurGlobal sousCapteur){
+     private void supprimerSousCapteur(ComposantCapteurGlobal sousCapteur){
          sousCapteurs.remove(sousCapteur);
      }
      
@@ -32,7 +31,9 @@ public class SuperCapteur extends ComposantCapteurGlobal{
          int temp=0;
          int poidsTotal=0;
          for(ComposantCapteurGlobal sousCapteur:sousCapteurs){
-            temp=temp+sousCapteur.getTemperature()*sousCapteur.getPoids();
+            Generateur g=new GenerationAleatoire((Capteur)sousCapteur);
+            g.demarrer();
+            temp=temp+sousCapteur.temperatureProperty().getValue()*sousCapteur.getPoids();
             poidsTotal=poidsTotal+sousCapteur.getPoids();  
         }
         temp=temp/poidsTotal; 

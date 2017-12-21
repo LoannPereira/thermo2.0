@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import metier.Capteur;
+import metier.ComposantCapteurGlobal;
 import metier.Generateur;
 
 /**
@@ -22,7 +23,7 @@ import metier.Generateur;
 public class MenuThermo extends Menu{
      FenetreThermometreController t;
     @Override
-    public void lancement(Capteur capteur, Generateur gen){
+    public void lancement(ComposantCapteurGlobal capteur, Generateur gen){
          try {
              Stage ther = new Stage();
              FXMLLoader loaderTher = new FXMLLoader(getClass().getResource("/ihm/FenetreThermometre.fxml"));

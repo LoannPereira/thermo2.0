@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 import metier.Capteur;
+import metier.ComposantCapteurGlobal;
 import metier.Generateur;
 
 /**
@@ -32,10 +33,10 @@ public class FenetreThermometreController {
     @FXML
     private Label tem;
     private Generateur gen;
-    private  ObjectProperty<Capteur> monCapteur = new SimpleObjectProperty<>();
-        public final Capteur getMonCapteur()  { return monCapteur.get(); }
-        public final void setMonCapteur(Capteur value) { monCapteur.set(value); }
-        public ObjectProperty<Capteur> monCapteurProperty() {return monCapteur;}
+    private  ObjectProperty<ComposantCapteurGlobal> monCapteur = new SimpleObjectProperty<>();
+        public final ComposantCapteurGlobal getMonCapteur()  { return monCapteur.get(); }
+        public final void setMonCapteur(ComposantCapteurGlobal value) { monCapteur.set(value); }
+        public ObjectProperty<ComposantCapteurGlobal> monCapteurProperty() {return monCapteur;}
         
     
   
@@ -48,7 +49,7 @@ public class FenetreThermometreController {
         ((Node)event.getSource()).getScene().getWindow().hide();
         
     }
-    public void chargement(Capteur cap, Generateur gen){
+    public void chargement(ComposantCapteurGlobal cap, Generateur gen){
         setMonCapteur(cap);
         this.gen=gen;
         nom.textProperty().bind(Bindings.select(monCapteur, "nomCapteur"));

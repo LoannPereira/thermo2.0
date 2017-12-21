@@ -5,12 +5,15 @@
  */
 package modele;
 
+import java.util.ArrayList;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import metier.Capteur;
+import metier.ComposantCapteurGlobal;
+import metier.SuperCapteur;
 
 /**
  *
@@ -18,16 +21,25 @@ import metier.Capteur;
  */
 public class ModeleCapteur {
     
-    private ObservableList<Capteur> lesCapteursObs = FXCollections.observableArrayList();
+    private ObservableList<ComposantCapteurGlobal> lesCapteursObs = FXCollections.observableArrayList();
 
-    private final ListProperty<Capteur> lesCapteurs = new SimpleListProperty<>(lesCapteursObs);
-        public ObservableList<Capteur> getLesCapteurs() {return lesCapteurs.get();}
-        public ReadOnlyListProperty<Capteur> lesCapteursProperty() {return lesCapteurs;}
-
+    private final ListProperty<ComposantCapteurGlobal> lesCapteurs = new SimpleListProperty<>(lesCapteursObs);
+        public ObservableList<ComposantCapteurGlobal> getLesCapteurs() {return lesCapteurs.get();}
+        public ReadOnlyListProperty<ComposantCapteurGlobal> lesCapteursProperty() {return lesCapteurs;}
+    
     public ModeleCapteur(){
-        lesCapteursObs.add(new Capteur("Salon",20,1));
-        lesCapteursObs.add(new Capteur("Garage",10,5));
-        lesCapteursObs.add(new Capteur("Cabane",5,2));
-        lesCapteursObs.add(new Capteur("Chambre",5,1));
+        ArrayList<ComposantCapteurGlobal> sousCapteurs=new ArrayList<>();
+        ComposantCapteurGlobal salon=new Capteur("Salon",20,1);
+        ComposantCapteurGlobal garage=new Capteur("Garage",10,5);
+        ComposantCapteurGlobal cabane=new Capteur("Cabane",5,2);
+        ComposantCapteurGlobal chambre=new Capteur("Chambre",5,1);
+        salon.setPoids(1);
+        sousCapteurs.add(salon);
+        lesCapteursObs.add(salon);
+        lesCapteursObs.add(garage);
+        lesCapteursObs.add(cabane);
+        lesCapteursObs.add(chambre);
+        
+        lesCapteursObs.add(new SuperCapteur("Chambre",sousCapteurs));
     }
 }
