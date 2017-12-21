@@ -180,7 +180,7 @@ public class FenetreAjoutCapteurController {
         listeCapteurDispo.setCellFactory((param) -> {
             return new ListCell<ComposantCapteurGlobal>(){
                //@Override
-                protected void updateItem(Capteur capteur, boolean empty) {
+                protected void updateItem(ComposantCapteurGlobal capteur, boolean empty) {
                     super.updateItem(capteur, empty);
                     if (!empty) {
                         textProperty().bind(capteur.nomCapteurProperty());
